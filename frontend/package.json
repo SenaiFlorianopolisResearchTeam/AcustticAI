@@ -1,0 +1,31 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint --import-plugin react typescript .",
+    "preview": "vite preview",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react-swc": "^3.10.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "oxlint": "^1.1.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.0",
+    "vite-plugin-oxlint": "^1.4.0"
+  },
+  "lint-staged": {
+    "frontend/**/*.{ts,tsx,js,jsx}": "oxlint --import-plugin react --import-plugin typescript"
+  }
+}
