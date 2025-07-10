@@ -1,16 +1,28 @@
-FROM python:3.12
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
-WORKDIR /src/app
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
 
-# Instala o uv
-RUN pip install uv
+RUN apt-get update && apt-get install -y \
+    libpq5 \
+    curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# Copia o pyproject.toml e uv.lock primeiro | decidi colocar eles primeiro pois substitui o requirements.txt
+WORKDIR /app
+
 COPY pyproject.toml uv.lock ./
 
-# Instala as dependências com o uv
-RUN uv pip install -r pyproject.toml --system
+RUN uv sync --locked --no-install-project
 
-COPY . .
+COPY src/ ./src/
+COPY alembic.ini ./
+COPY alembic/ ./alembic/
 
-CMD ["python", "main.py"]
+RUN uv sync --locked --no-editable
+
+EXPOSE 8000
+
+CMD ["uv", "run", "src/app/main.py"]
