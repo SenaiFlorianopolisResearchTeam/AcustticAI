@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const IA = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -11,7 +12,7 @@ const IA = () => {
   const [heavyVehiclePercentage, setHeavyVehiclePercentage] = useState<number>(0);
 
   return (
-    <div className="flex flex-col justify-center items-center p-5 min-h-screen bg-gradient-to-b from-[#c7bfff] to-[#ececec]">
+    <div className="flex flex-col justify-center items-center p-5 min-h-screen">
       <h1 className="font-poppins text-[1.8em] text-white mb-6 drop-shadow">Inteligência Artificial</h1>
       <div className="flex bg-[#dadada] w-[540px] h-[550px] rounded-xl justify-center items-center overflow-hidden shadow-xl">
         <div className="flex flex-col bg-[#9a9a9a] w-[440px] h-[500px] rounded-xl p-5 items-center overflow-y-auto gap-4">
@@ -28,20 +29,18 @@ const IA = () => {
             type="file"
             accept="video/*"
             className="hidden"
-            // onChange={handleFileChange}
           />
 
-          <button
+          <Button
             className="w-[170px] h-[70px] border-2 border-[#545454] bg-[#dadada] text-black font-poppins text-center text-[1.4em] rounded-lg flex justify-center items-center mt-2 cursor-pointer transition-all hover:bg-[#b3b3b3] hover:scale-110"
-            // onClick={handleUpload}
           >
             Enviar
-          </button>
+          </Button>
 
           <p>{uploadMessage}</p>
           <p>{processingMessage}</p>
 
-          {/* Exemplo de exibição dos resultados */}
+          
           {totalVehicles > 0 && (
             <div className="mt-2 w-full bg-[#ececec] rounded-xl p-5 text-center flex flex-col items-center">
               <h2 className="font-poppins text-[1.4em] text-[#333] mb-2">Resultados da Contagem:</h2>

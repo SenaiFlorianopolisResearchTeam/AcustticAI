@@ -5,7 +5,7 @@ const Perfil = () => {
   const usuario = { nome_usuario: "Seu Nome", email_usuario: "email@dominio.com" };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-2 bg-gradient-to-b from-[#16003b] to-[#291663]">
+    <div className="min-h-screen flex items-center justify-center px-2">
       <div className="flex flex-col lg:flex-row items-center gap-24 w-full max-w-6xl p-4">
         {/* Box do perfil */}
         <div className="w-[340px] md:w-[500px] lg:w-[800px] flex flex-col items-center justify-center border border-[#451892] rounded-xl bg-gradient-to-b from-[#45189270] to-[#120234] shadow-xl p-6">

@@ -39,7 +39,7 @@ const membrosNovos = [
 
 const Contact: React.FC = () => {
   return (
-    <div className="main block min-h-screen bg-gradient-to-b from-[#16003b] to-[#291663] p-4">
+  <div className="main block min-h-screen">
       <h1 className="title text-[72px] text-white/65 text-left ml-[3%] font-bold mb-4 md:mb-10 font-poppins">
         Contato
       </h1>

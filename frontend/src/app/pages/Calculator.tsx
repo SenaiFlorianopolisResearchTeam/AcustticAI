@@ -92,9 +92,8 @@ export default function Calculator() {
   }, [modelValues, selectedModel])
 
   return (
-    <section className="w-full min-h-screen flex justify-center items-center py-12 px-2 bg-gradient-to-b from-[#45189270] to-[#120234]">
+    <section className="min-h-screen flex justify-center items-center py-12 px-2">
       <div className="w-full max-w-5xl flex flex-col md:flex-row gap-8 bg-[#18023c]/80 border-0 shadow-2xl rounded-2xl p-4">
-        {/* Parâmetros */}
         <div className="flex-1 p-8 flex flex-col gap-4">
           <h2 className="text-2xl font-bold text-white mb-3">Parâmetros</h2>
           <label className="text-[#cb88ff] mb-1">Modelo</label>
@@ -208,7 +207,6 @@ export default function Calculator() {
           )}
         </div>
 
-        {/* Resultados */}
         <div className="flex-1 p-8 flex flex-col gap-4 border-l border-[#29166380]">
           <h2 className="text-2xl font-bold text-white mb-3">Resultados</h2>
           {selectedModel === "griffiths" && (
