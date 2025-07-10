@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -115,6 +117,19 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+       @apply text-white bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))];
+    background-image: linear-gradient(
+      112deg,
+      #2242DA -7.38%,
+      #451892 -1.58%,
+      #2F0E6B 13.55%,
+      #1D064B 26.57%,
+      #14023B 40.26%,
+      #170341 57.22%,
+      #1E074D 69.33%,
+      #310F6E 90.72%,
+      #263ACB 133.23%
+    );
+    font-family: 'Poppins', sans-serif;
   }
 }

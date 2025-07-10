@@ -1,4 +1,16 @@
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:                 
+      - ./frontend:/app 
+      - /app/node_modules
+    network_mode: host
+ 
   postgres:
     image: postgres:15-alpine
     container_name: acousticai_postgres
