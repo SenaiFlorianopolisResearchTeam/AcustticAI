@@ -47,7 +47,6 @@ const grupos = [
       },
     ],
   },
-  // ...demais grupos (copie do seu código)
 ]
 
 export default function Integrantes() {

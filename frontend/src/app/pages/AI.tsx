@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { BadgeX } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const IA = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -14,8 +17,16 @@ const IA = () => {
   return (
     <div className="flex flex-col justify-center items-center p-5 min-h-screen">
       <h1 className="font-poppins text-[1.8em] text-white mb-6 drop-shadow">Inteligência Artificial</h1>
-      <div className="flex bg-[#dadada] w-[540px] h-[550px] rounded-xl justify-center items-center overflow-hidden shadow-xl">
-        <div className="flex flex-col bg-[#9a9a9a] w-[440px] h-[500px] rounded-xl p-5 items-center overflow-y-auto gap-4">
+      <Card>
+      <CardContent>
+        <Alert className="w-auto mb-5" variant="destructive">
+          <BadgeX />
+          <AlertTitle>Faça Login!</AlertTitle>
+          <AlertDescription>
+            Faça Login ou cadastre-se para ter acesso a inteligência artificial.
+          </AlertDescription>
+        </Alert>
+        <div className="flex flex-col bg-[#9a9a9a] w-[440px] h-[300px] rounded-xl p-5 items-center overflow-y-auto gap-4">
           <p className="text-[#444] text-[1.2em] font-poppins text-center">Clique abaixo para enviar o vídeo:</p>
           
           <label
@@ -62,7 +73,8 @@ const IA = () => {
             </div>
           )}
         </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

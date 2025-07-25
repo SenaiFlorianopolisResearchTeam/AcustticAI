@@ -7,6 +7,8 @@ import Calculator from "./app/pages/Calculator"
 import IA from "./app/pages/AI"
 import Contact from "./app/pages/Contact"
 import Perfil from "./app/pages/Perfil"
+import Login from "./app/pages/Login" 
+import Cadastro from "./app/pages/Cadastro"
 
 export default function AppRoutes() {
   return (
@@ -20,6 +22,8 @@ export default function AppRoutes() {
       <Route path="/IA" element={<IA />} />
       <Route path="/Contact" element={<Contact />} />
       <Route path="/Perfil" element={<Perfil />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/Cadastro" element={<Cadastro />} />
     </Routes>
   )
 }

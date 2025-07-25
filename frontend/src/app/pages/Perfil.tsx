@@ -1,14 +1,9 @@
-import React from "react";
-
 const Perfil = () => {
-  // Dados mock para exemplo, remova em produção
   const usuario = { nome_usuario: "Seu Nome", email_usuario: "email@dominio.com" };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-2">
-      <div className="flex flex-col lg:flex-row items-center gap-24 w-full max-w-6xl p-4">
-        {/* Box do perfil */}
-        <div className="w-[340px] md:w-[500px] lg:w-[800px] flex flex-col items-center justify-center border border-[#451892] rounded-xl bg-gradient-to-b from-[#45189270] to-[#120234] shadow-xl p-6">
+      <div className="flex flex-col lg:flex-row items-center gap-24 w-full max-w-6xl p-4">        <div className="w-[340px] md:w-[500px] lg:w-[800px] flex flex-col items-center justify-center border border-[#451892] rounded-xl bg-gradient-to-b from-[#45189270] to-[#120234] shadow-xl p-6">
           <h1 className="text-[2.2rem] md:text-[2.8rem] text-center text-white/95 mt-4 font-bold font-poppins">
             Bem-vindo, {usuario.nome_usuario}!
           </h1>

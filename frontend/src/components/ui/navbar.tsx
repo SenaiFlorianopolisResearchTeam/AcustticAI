@@ -1,12 +1,12 @@
 'use client'
-
+ 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu"
-import { SquareUser } from 'lucide-react'
 import { Link } from "react-router-dom"
 
 export function Navbar() {
@@ -38,9 +38,12 @@ export function Navbar() {
           ))}
 
           <NavigationMenuItem>
-            <Link to="/Perfil">
+            <Link to="/Login">
               <NavigationMenuLink className="cursor-pointer hover:text-[#FFBCF1] transition-colors">
-                <SquareUser size={32} />
+              <Avatar>
+                <AvatarImage/>
+                <AvatarFallback>IC</AvatarFallback>
+              </Avatar>
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
