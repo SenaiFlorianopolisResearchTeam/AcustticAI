@@ -5,10 +5,6 @@ import {
   AccordionContent
 } from "@/components/ui/accordion"
 
-import Wagner from '../../../public/Team/Wawa.jpg'
-import Pedro from '../../../public/Team/Pedro.jpg'
-import Sara from '../../../public/Team/Sara.jpg'
-import VitorK from '../../../public/Team/VitorK.jpg'
 
 const grupos = [
   {
@@ -19,7 +15,7 @@ const grupos = [
         id: 1,
         nome: "Wagner de Souza Santos",
         funcao: "Orientador",
-        foto: Wagner,
+        foto: "/Team/Wawa.jpg",
       },
     ],
   },
@@ -31,19 +27,19 @@ const grupos = [
         id: 2,
         nome: "Pedro Henrique Nunes Zanette",
         funcao: "Desenvolvedor",
-        foto: Pedro,
+        foto: "/Team/Pedro.jpg",
       },
       {
         id: 3,
         nome: "Sara Rotenski Pereira",
         funcao: "Desenvolvedora",
-        foto: Sara,
+        foto: "/Team/Sara.jpg",
       },
       {
         id: 4,
         nome: "Vítor Kurth Vasconcellos Ferreira",
         funcao: "Desenvolvedor",
-        foto: VitorK,
+        foto: "/Team/VitorK.jpg",
       },
     ],
   },

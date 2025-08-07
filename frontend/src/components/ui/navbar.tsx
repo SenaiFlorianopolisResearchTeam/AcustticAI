@@ -1,20 +1,25 @@
-'use client'
- 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+"use client";
+
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
-} from "@/components/ui/navigation-menu"
-import { Link } from "react-router-dom"
+} from "@/components/ui/navigation-menu";
+import { Link } from "react-router-dom";
+import { Button } from "./button";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export function Navbar() {
+  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
+    useAuth0();
+
   return (
     <header className="w-full mt-5 mb-0 md:px-6 flex items-center justify-between font-poppins text-white">
       <div className="flex items-center">
-        <Link to='/Home'>
-        <img src="Elements/LogoIC.svg" alt="Logo" width={120} />
+        <Link to="/Home">
+          <img src="Elements/LogoIC.svg" alt="Logo" width={120} />
         </Link>
       </div>
 
@@ -24,9 +29,7 @@ export function Navbar() {
             { title: "Home", url: "/Home" },
             { title: "Sobre", url: "/About" },
             { title: "Biblioteca", url: "/Library" },
-            { title: "Calculadora", url: "/Calculator" },
-            { title: "Inteligência Artificial", url: "/IA" },
-            { title: "Contato", url: "/Contact" }
+            { title: "Contato", url: "/Contact" },
           ].map((link) => (
             <NavigationMenuItem key={link.url}>
               <Link to={link.url}>
@@ -37,18 +40,65 @@ export function Navbar() {
             </NavigationMenuItem>
           ))}
 
+          {isAuthenticated && (
+            <>
+              <NavigationMenuItem>
+                <Link to="/Calculator">
+                  <NavigationMenuLink className="cursor-pointer hover:text-[#FFBCF1] transition-colors">
+                    Calculadora
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link to="/IA">
+                  <NavigationMenuLink className="cursor-pointer hover:text-[#FFBCF1] transition-colors">
+                    Inteligência Artificial
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </>
+          )}
+
           <NavigationMenuItem>
-            <Link to="/Login">
-              <NavigationMenuLink className="cursor-pointer hover:text-[#FFBCF1] transition-colors">
-              <Avatar>
-                <AvatarImage/>
-                <AvatarFallback>IC</AvatarFallback>
-              </Avatar>
-              </NavigationMenuLink>
-            </Link>
+            <div className="flex flex-row">
+              {isLoading ? (
+                <span className="text-white">Carregando...</span>
+              ) : isAuthenticated ? (
+                <div className="flex flex-row items-center md:items-start gap-5">
+                  <div className="flex items-center gap-2">
+                    <Avatar className="h-9 w-9">
+                      <AvatarImage src={user?.picture} alt={user?.name} />
+                      <AvatarFallback>
+                        {user?.name?.charAt(0) ?? "U"}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="text-white text-base">{user?.name}</span>
+                  </div>
+                  <Button
+                    onClick={() =>
+                      logout({
+                        logoutParams: { returnTo: window.location.origin },
+                      })
+                    }
+                    variant="destructive"
+                    className="h-8 px-5 text-base cursor-pointer"
+                  >
+                    Sair
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  onClick={() => loginWithRedirect()}
+                  className="h-10 w-30 text-ls text-black cursor-pointer"
+                  variant="secondary"
+                >
+                  Login
+                </Button>
+              )}
+            </div>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </header>
-  )
+  );
 }

@@ -1,8 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { ArrowBigRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home() {
+
   return (
     <div className='min-h-screen mt-10 mb-0 justify-center lg:px-12'>
       <div className='flex items-center md:space-x-70'>
@@ -12,12 +14,11 @@ export default function Home() {
             Grupo de Iniciação Científica de Florianópolis, Santa Catarina, propondo ferramentas para análises em <b>acústica</b> de forma acessível
           </p>
           <Link to="/About">
-          <Button size="IC">Saiba mais<ArrowBigRight /></Button>
+            <Button size="IC">Saiba mais<ArrowBigRight /></Button>
           </Link>
         </div>
         <div className='flex-1 flex justify-center'>
-            <img src="Elements/Rocket.svg" alt="Foguete" width={470}/>
-
+          <img src="Elements/Rocket.svg" alt="Foguete" width={470} />
         </div>
       </div>
     </div>

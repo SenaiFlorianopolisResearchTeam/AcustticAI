@@ -5,20 +5,20 @@ import { Navbar } from './components/ui/navbar.tsx'
 import { Copyright_tag } from './components/ui/copyright-tag.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './routes'
+import { Auth0Provider } from "@auth0/auth0-react"
 
-
-const Main = () =>{
-  return(
-  createRoot(document.getElementById('root')!).render(
-    <StrictMode>
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <Auth0Provider
+      domain={import.meta.env.VITE_AUTH0_DOMAIN}
+      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
+      authorizationParams={{ redirect_uri: window.location.origin }}
+    >
       <BrowserRouter>
-        <Navbar/>
-        <AppRoutes/>
-        <Copyright_tag/>
+        <Navbar />
+        <AppRoutes />
+        <Copyright_tag />
       </BrowserRouter>
-    </StrictMode>,
-    )
-  )
-}
-
-export default Main()
+    </Auth0Provider>
+  </StrictMode>
+)

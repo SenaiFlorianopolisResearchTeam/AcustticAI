@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import { useAuth0 } from "@auth0/auth0-react";
+
 import {
   calcHanc,
   calcJohnson,
@@ -90,6 +92,15 @@ export default function Calculator() {
     }
     setResult(newResults)
   }, [modelValues, selectedModel])
+
+  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+
+  if (isLoading) return <div>Carregando...</div>;
+
+  if (!isAuthenticated) {
+    loginWithRedirect();
+    return <div>Redirecionando para login...</div>;
+  }
 
   return (
     <section className="min-h-screen flex justify-center items-center py-12 px-2">
