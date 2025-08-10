@@ -12,8 +12,49 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export function Navbar() {
-  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
-    useAuth0();
+  const {
+    user,
+    isAuthenticated,
+    isLoading,
+    loginWithRedirect,
+    logout,
+    getAccessTokenSilently,
+  } = useAuth0();
+
+  const debugToken = async () => {
+    try {
+      const token = await getAccessTokenSilently({
+        authorizationParams: { audience: import.meta.env.VITE_AUTH0_AUDIENCE },
+      });
+      console.log("ACCESS TOKEN:", token);
+    } catch (err) {
+      console.error("Erro ao pegar token:", err);
+    }
+  };
+
+   const chamarAPIPrivada = async () => {
+    try {
+      const token = await getAccessTokenSilently({
+        authorizationParams: { audience: import.meta.env.VITE_AUTH0_AUDIENCE },
+      });
+
+      const resp = await fetch(`${import.meta.env.VITE_API_URL}/api/private`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!resp.ok) {
+        const txt = await resp.text();
+        throw new Error(`HTTP ${resp.status}: ${txt}`);
+      }
+
+      const data = await resp.json();
+      console.log("RESPOSTA /api/private:", data);
+      alert(`OK!\nsub: ${data.sub}\nemail: ${data.email ?? "sem email"}`);
+    } catch (err) {
+      console.error("Falha ao chamar /api/private:", err);
+      alert("Erro ao chamar API privada. Veja o console.");
+    }
+  };
 
   return (
     <header className="w-full mt-5 mb-0 md:px-6 flex items-center justify-between font-poppins text-white">
@@ -88,7 +129,14 @@ export function Navbar() {
                 </div>
               ) : (
                 <Button
-                  onClick={() => loginWithRedirect()}
+                  onClick={() =>
+                    loginWithRedirect({
+                      authorizationParams: {
+                        audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+                        scope: "openid profile email",
+                      },
+                    })
+                  }
                   className="h-10 w-30 text-ls text-black cursor-pointer"
                   variant="secondary"
                 >

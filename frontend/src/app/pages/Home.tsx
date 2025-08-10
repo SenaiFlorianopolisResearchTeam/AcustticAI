@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { ArrowBigRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home() {
 
